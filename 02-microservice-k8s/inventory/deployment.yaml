@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otus-02-microservice-k8s-deployment
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: otus-02-microservice-k8s-app
+  template:
+    metadata:
+      labels:
+        app: otus-02-microservice-k8s-app
+    spec:
+      containers:
+        - name: otus-02-microservice-k8s
+          image: mrmasterx/hw-2022-12-otus-microservice-kryukov:v1
+          ports:
+            - name: web
+              containerPort: 8000           
+          livenessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+          readinessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 10
+            periodSeconds: 5
+

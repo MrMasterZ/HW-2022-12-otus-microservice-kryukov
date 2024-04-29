@@ -11,5 +11,6 @@
 
     <modules>
 	    <module>01-microservice-docker/app</module>
+	    <module>02-microservice-k8s/app</module>
     </modules>
 </project>

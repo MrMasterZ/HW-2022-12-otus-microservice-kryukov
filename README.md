@@ -10,3 +10,6 @@ Certificate:
 
 ### Homework №1 (theme: "Docker")
 * [01-microservice-docker](01-microservice-docker)
+
+### Homework №2 (theme: "kubernetes")
+* [02-microservice-k8s](02-microservice-k8s)

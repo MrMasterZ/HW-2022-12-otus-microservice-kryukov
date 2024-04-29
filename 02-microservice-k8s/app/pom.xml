@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>otus.student.kryukov.hw</groupId>
-	<artifactId>01-microservice-docker</artifactId>
+	<artifactId>02-microservice-k8s</artifactId>
 	<version>1.0.0</version>
-	<name>01-microservice-docker</name>
+	<name>02-microservice-k8s</name>
 	<properties>
 		<java.version>17</java.version>
 		<minimal.maven.version>3.8.1</minimal.maven.version>
