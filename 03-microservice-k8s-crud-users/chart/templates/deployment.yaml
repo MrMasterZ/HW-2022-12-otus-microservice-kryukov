@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.project.name }}-deployment
+spec:
+  replicas: {{ .Values.project.replicas }}
+  strategy:
+    type: {{ .Values.project.strategy.type }}
+  selector:
+    matchLabels:
+      app: otus-{{ .Values.project.name }}-app
+  template:
+    metadata:
+      labels:
+        app: otus-{{ .Values.project.name }}-app
+    spec:
+      containers:
+        - name: otus-{{ .Values.project.name }}
+          image: {{ .Values.project.image }}
+          ports:
+            - name: web
+              containerPort: {{ .Values.server.port }}
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: DATABASE_PASSWORD
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: DATABASE_URL
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: DATABASE_USER
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: SERVER_PORT
+          livenessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+          readinessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 10
+            periodSeconds: 5

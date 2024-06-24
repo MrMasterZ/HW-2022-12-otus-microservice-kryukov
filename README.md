@@ -13,3 +13,6 @@ Certificate:
 
 ### Homework №2 (theme: "kubernetes")
 * [02-microservice-k8s](02-microservice-k8s)
+
+### Homework №3 (theme: "kubernetes with using configmaps/secrets and helm")
+* [03-microservice-k8s-crud-users](03-microservice-k8s-crud-users)

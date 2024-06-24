@@ -12,5 +12,6 @@
     <modules>
 	    <module>01-microservice-docker/app</module>
 	    <module>02-microservice-k8s/app</module>
+	    <module>03-microservice-k8s-crud-users/app</module>
     </modules>
 </project>

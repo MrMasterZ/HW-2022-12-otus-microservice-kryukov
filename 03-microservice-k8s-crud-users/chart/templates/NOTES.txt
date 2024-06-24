@@ -1,0 +1,6 @@
+================================================================================================================
+APPLICATION IS UP
+
+{{- if .Values.help.enabled }}
+  POD_NAME=`kubectl get pods -A -n {{ .Release.Namespace }} | grep {{ .Values.project.name }} | awk ' { print $2 } ' | head -1`; kubectl port-forward $POD_NAME 8080:{{ .Values.project.user.port }} -n {{ .Release.Namespace }}
+{{- end }}

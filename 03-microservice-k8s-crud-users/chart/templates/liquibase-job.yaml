@@ -1,0 +1,32 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: liquibase-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: liq-job
+          image: "my-liquibase:v1"
+          env:
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: DATABASE_PASSWORD
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: DATABASE_URL
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: DATABASE_USER
+          command: ["/bin/sh"]
+          args:
+            - "-c"
+            - "liquibase --url=$DB_URL --changelog-file=master.yaml --username=$DB_USER --password=$DB_PASS update"

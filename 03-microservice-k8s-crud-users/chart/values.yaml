@@ -1,0 +1,22 @@
+db:
+  dbname: postgres
+  ip: 192.168.217.128
+  user: postgres
+  pass: uwbbGCky4P
+  port: "5432"
+  user: postgres
+project:
+  name: 03-microservice-k8s-crud-users
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  image: 03-microservice-k8s-crud-users:v1
+  user:
+    port: 8000
+  service:
+    type: NodePort
+  host: arch.homework
+server:
+  port: 8000
+help:
+  enabled: true

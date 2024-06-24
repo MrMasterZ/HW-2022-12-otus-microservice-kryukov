@@ -1,0 +1,10 @@
+server:
+  port: ${SERVER_PORT:8000}
+spring:
+  datasource:
+    url-def: jdbc:postgresql://arch.homework:5432/postgres
+    url: ${DB_URL:${spring.datasource.url-def}}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:KZmyPVcHXC}
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: never
